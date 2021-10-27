@@ -27,6 +27,8 @@ public class Music {
     private int velocity = STD_VELOCITY;
     /** Default number of Channels. */
     private int numChannels = 1;
+    
+    private boolean nowPlaying = false; //set to true of music is playing
 
     /**
      * Construct Music using Note.Vibes instrument.
@@ -228,5 +230,6 @@ public class Music {
                     note.getVelocityOn());
         }
     }
-
 }
+    
+

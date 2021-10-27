@@ -107,6 +107,7 @@ public class DisplayImage extends ILFrame {
         JMenuBar myMenuBar = new JMenuBar();
         myMenuBar.add(ImageLab.newFileMenu(this));
         myMenuBar.add(ImageLab.newFilterMenu());
+        myMenuBar.add(ImageLab.newPlayMenu());
         setJMenuBar(myMenuBar);
         setVisible(true);
     }
