@@ -8,6 +8,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.FileDialog;
 import java.awt.Container;
@@ -205,7 +207,7 @@ public class ImageLab {
 
         JMenu play = new JMenu("Play");
         mbar.add(play);
-        play.addActionListener(makePlayListener());
+        play.addMenuListener(makePlayMenuListener());
         return mbar;
     } //buildMenus
 
@@ -221,9 +223,9 @@ public class ImageLab {
         //        JMenuItem open = new JMenuItem("Open",'O');
         //        fileMenu.add(open);
         //        open.addActionListener(makeOpenListener());
-        JMenuItem play = new JMenuItem("Play", 'P');
-        fileMenu.add(play);
-        play.addActionListener(makePlayListener());
+        //JMenuItem play = new JMenuItem("Play", 'P');
+        //fileMenu.add(play);
+        //play.addActionListener(makePlayListener());
         JMenuItem save = new JMenuItem("Save", 'S');
         fileMenu.add(save);
         save.addActionListener(makeSaveListener());
@@ -253,6 +255,17 @@ public class ImageLab {
         }
         return filterMenu;
     }
+    /**
+     * Returns a Play menu for a single image
+     * @return
+     */
+    public static JMenu newPlayMenu() {
+    	JMenu playMenu = new JMenu("Play");
+    	playMenu.addMenuListener(makePlayMenuListener());
+    		
+    	
+    	return playMenu;
+    }
 
     /**
      * Builds a dedicated ActionListener for a specific ImageFilter.
@@ -277,6 +290,9 @@ public class ImageLab {
             }
         };
     } //makeActionListener
+    
+
+    
 
     /**
      * Create an ActionListener for opening an image file.
@@ -342,6 +358,33 @@ public class ImageLab {
             } //actionPerformed
         }; //new ActionListener
     } //makePlayListener
+    
+    public static MenuListener makePlayMenuListener() {
+    	final JFrame myframe = frame;
+    	return new MenuListener() {
+    		public void menuSelected(MenuEvent onClick) {
+    			//The imgProvider holding the image
+                ImgProvider improvider = impro;
+                if (improvider == null) {
+                    JOptionPane.showMessageDialog(myframe, "First select the image to play");
+                    return;
+                } //if
+                improvider.play();
+    	}
+
+			@Override
+			public void menuDeselected(MenuEvent e) {
+				// Functioning as intended do not delete
+			}
+
+			@Override
+			public void menuCanceled(MenuEvent e) {
+				// Functioning as intended do not delete
+				
+			}
+    	};//new MenuListener
+    }//makePlayListener
+    
 
     /**
      * Create an ActionListener for saving an image to a file.
