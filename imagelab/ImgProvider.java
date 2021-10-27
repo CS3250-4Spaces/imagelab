@@ -30,7 +30,7 @@ public class ImgProvider extends JComponent {
     /** Serialization version. */
     private static final long serialVersionUID = 11L;
     /** Thread that allows asynchronus activity. */
-    private static Thread playThread;
+    private static Thread playThread; //LOOK AT ME
     /** Debug variable to show all filters. */
     private static boolean all;
     /** true if this ImgProvider currently holds an image; false otherwise. */
@@ -89,7 +89,7 @@ public class ImgProvider extends JComponent {
      *
      * @return Id of ImgProvider
      */
-    public int getid() {
+    public int getid() { //used only for debugging
         return id;
     }
 

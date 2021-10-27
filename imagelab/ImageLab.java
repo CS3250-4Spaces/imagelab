@@ -138,14 +138,14 @@ public class ImageLab {
      */
     private JMenuBar buildMenus() {
         JMenuBar mbar = new JMenuBar();
-        JMenu file = new JMenu("File");
+        JMenu file = new JMenu("File"); //creates new Jmenu o called "file"
         mbar.add(file);
         JMenuItem open = new JMenuItem("Open", 'O');
         file.add(open);
         open.addActionListener(makeOpenListener());
-        JMenuItem play = new JMenuItem("Play", 'P');
-        file.add(play);
-        play.addActionListener(makePlayListener());
+        //JMenuItem play = new JMenuItem("Play", 'P'); //creates a new JMenu item
+        //file.add(play); //
+        //play.addActionListener(makePlayListener());
         JMenuItem save = new JMenuItem("Save", 'S');
         file.add(save);
         save.addActionListener(makeSaveListener());
@@ -203,6 +203,9 @@ public class ImageLab {
 
         } //for k
 
+        JMenu play = new JMenu("Play");
+        mbar.add(play);
+        play.addActionListener(makePlayListener());
         return mbar;
     } //buildMenus
 
